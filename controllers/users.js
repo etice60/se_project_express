@@ -37,6 +37,7 @@ const getUser = (req, res) => {
   const { userId } = req.params;
   console.log(userId);
   User.findById(userId)
+    .orFail()
     .then((user) => res.status(200).send({ data: user }))
     .catch((err) => {
       console.error(err);
