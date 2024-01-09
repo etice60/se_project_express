@@ -1,5 +1,6 @@
 const ClothingItem = require("../models/clothingItem");
-const clothingItems = require("../models/clothingItem");
+// const clothingItems = require("../models/clothingItem");
+
 const {
   INVALID_DATA_ERROR,
   NOTFOUND_ERROR,
@@ -38,19 +39,19 @@ const getItems = (req, res) => {
     });
 };
 
-const updateItem = (req, res) => {
-  const { itemId } = req.params;
-  const { imageUrl } = req.body;
+// const updateItem = (req, res) => {
+//   const { itemId } = req.params;
+//   const { imageUrl } = req.body;
 
-  ClothingItem.findByIdAndUpdate(itemId, { $set: { imageUrl } })
-    .orFail()
-    .then((item) => res.status(200).send({ data: item }))
-    .catch((err) => {
-      console.error(err);
-      console.log(err.name);
-      res.status(DEFAULT_ERROR).send({ message: "Error from updateItem" });
-    });
-};
+//   ClothingItem.findByIdAndUpdate(itemId, { $set: { imageUrl } })
+//     .orFail()
+//     .then((item) => res.send({ data: item }))
+//     .catch((err) => {
+//       console.error(err);
+//       console.log(err.name);
+//       res.status(DEFAULT_ERROR).send({ message: "Error from updateItem" });
+//     });
+// };
 
 const deleteItem = (req, res) => {
   const { itemId } = req.params;
@@ -58,9 +59,7 @@ const deleteItem = (req, res) => {
   console.log(itemId);
   ClothingItem.findByIdAndDelete(itemId)
     .orFail()
-    .then((item) =>
-      res.status(200).send({ message: "Item successfully deleted" }),
-    )
+    .then(() => res.status(200).send({ message: "Item successfully deleted" }))
     .catch((err) => {
       console.error(err);
       if (err.name === `CastError`) {
@@ -139,7 +138,6 @@ const dislikeItem = (req, res) => {
 module.exports = {
   createItem,
   getItems,
-  updateItem,
   deleteItem,
   likeItem,
   dislikeItem,

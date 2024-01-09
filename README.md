@@ -1,9 +1,11 @@
 # WTWR (What to Wear?): Back End
-The back-end project is focused on creating a server for the WTWR application. You’ll gain a deeper understanding of how to work with databases, set up security and testing, and deploy web applications on a remote machine. The eventual goal is to create a server with an API and user authorization.
-## Running the Project
-`npm run start` — to launch the server 
 
-`npm run dev` — to launch the server with the hot reload feature
+This project is the backend half of the WTWR project. Created using Node.js, and express mongoDB. This project uses routes and controllers to fetch, create, and delete items, like and dislike users on the front end. The project also authorizes and stores user data safely in the server allowing users to create a secure account on the front-end. The requests were all tested using customized requests via postman to ensure request efficiency and accuracy.
 
-### Testing
-Before committing your code, make sure you edit the file `sprint.txt` in the root folder. The file `sprint.txt` should contain the number of the sprint you're currently working on. For ex. 12
+## You can find the live site to entire appplication here:
+
+https://etice60.github.io/se_project_react/
+
+### You can find the front end code here:
+
+https://github.com/etice60/se_project_react.git
