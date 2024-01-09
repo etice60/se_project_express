@@ -35,11 +35,19 @@ const createUser = (req, res) => {
 
 const getUser = (req, res) => {
   const { userId } = req.params;
+  console.log(userId);
   User.findById(userId)
     .then((user) => res.status(200).send({ data: user }))
     .catch((err) => {
-      if (err.message === "User not found") {
+      console.error(err);
+      if (err.name === "DocumentNotFoundError") {
         res.status(NOTFOUND_ERROR).send({ message: err.message });
+      } else if (err.name === "CastError") {
+        res.status(INVALID_DATA_ERROR).send({
+          message: "Invalid ID passed.",
+        });
+      } else {
+        res.status(DEFAULT_ERROR).send({ message: "Error from getUser" });
       }
     });
 };
