@@ -12,7 +12,7 @@ const {
 } = require("../utils/errors");
 
 const updateUser = (req, res) => {
-  const id = res.user._id;
+  const id = req.user._id;
   const { name, avatar } = req.body;
 
   User.findByIdAndUpdate(

@@ -13,7 +13,7 @@ const handleAuthorization = (req, res, next) => {
     return authError(res);
   }
 
-  const token = authorization.replace("Bearer", "");
+  const token = authorization.replace("Bearer ", "");
   let payload;
 
   try {
