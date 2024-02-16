@@ -1,7 +1,6 @@
-const { JWT_SECRET } = require("../utils/config");
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const user = require("../models/user");
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = require("../utils/config");
 const User = require("../models/user");
 const {
   INVALID_DATA_ERROR,
@@ -31,7 +30,7 @@ const updateUser = (req, res) => {
       if (err.message === "User not found") {
         res.status(NOTFOUND_ERROR.send({ message: err.message }));
       } else if (err.name === "ValidationError") {
-        res.status(INVALID_DATA_ERROR.send({ message: err.message }));
+        res.status(INVALID_DATA_ERROR).send({ message: err.message });
       } else {
         res.status(DEFAULT_ERROR).send({ message: "Internal server error" });
       }
@@ -74,7 +73,9 @@ const createUser = (req, res) => {
       } else if (err.message === "Email is already in use") {
         res.status(CONFLICT_ERROR).send({ message: "Email already exists" });
       } else {
-        res.status(DEFAULT_ERROR).send({ message: err.message });
+        res
+          .status(DEFAULT_ERROR)
+          .send({ message: "An error has occurred on the server." });
       }
     });
 };
@@ -119,7 +120,9 @@ const loginUser = (req, res) => {
       if (err.message === "Incorrect email or password") {
         res.status(UNAUTHORIZED_ERROR).send({ message: "Invalid credentials" });
       } else {
-        res.status(DEFAULT_ERROR).send({ message: err.message });
+        res
+          .status(DEFAULT_ERROR)
+          .send({ message: "An error has occurred on the server." });
       }
     });
 };

@@ -12,7 +12,6 @@ const users = new mongoose.Schema({
   avatar: {
     type: String,
     required: true,
-    unique: true,
     validate: {
       validator(value) {
         return validator.isURL(value);
