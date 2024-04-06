@@ -4,7 +4,6 @@ const { JWT_SECRET } = require("../utils/config");
 const User = require("../models/user");
 const NotFoundError = require("../errors/notFoundError");
 const InvalidError = require("../errors/invalidError");
-const ForbiddenError = require("../errors/forbiddenError");
 const UnauthorizedError = require("../errors/unauthorizedError");
 const ConflictError = require("../errors/conflictError");
 // const {
@@ -108,7 +107,6 @@ const getCurrentUser = (req, res, next) => {
 
 const loginUser = (req, res, next) => {
   const { email, password } = req.body;
-
   if (!email || !password) {
     return next(new InvalidError("Invalid credentials"));
   }
@@ -126,9 +124,6 @@ const loginUser = (req, res, next) => {
         next(new UnauthorizedError("Invalid credentials"));
       } else {
         next(err);
-        // res
-        //   .status(DEFAULT_ERROR)
-        //   .send({ message: "An error has occurred on the server." });
       }
     });
 };

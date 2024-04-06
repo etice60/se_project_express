@@ -23,9 +23,7 @@ const createItem = (req, res, next) => {
     .catch((err) => {
       console.error(err);
       if (err.name === `ValidationError`) {
-        next(INVALID_DATA_ERROR).send({
-          message: "Invalid request error on createItem",
-        });
+        next(new InvalidError("Invalid Credentials"));
       }
       next(err);
       // return res

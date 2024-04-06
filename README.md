@@ -25,5 +25,5 @@ The project is the backend of the WTWR project. Routes and Controllers are used 
 
 ## Links
 
-- The project can be seen live using: https://etice60.github.io/se_project_react/
+- The project can be seen live using: https://etice60wtwr.crabdance.com
 - the project's backend can be found by using: https://github.com/etice60/se_project_express.git

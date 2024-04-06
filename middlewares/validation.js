@@ -92,5 +92,5 @@ module.exports = {
   createUserValidator,
   updateUserValidator,
   loginUserValidator,
-  validateId,
+  validateURL,
 };

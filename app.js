@@ -1,10 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const helmet = require("helmet");
+const { errors } = require("celebrate");
 const errorHandler = require("./middlewares/error-handler");
 const routes = require("./routes/index");
-const { errors } = require("celebrate");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 
 const { PORT = 3001 } = process.env;
@@ -18,7 +17,6 @@ mongoose.connect(
   (e) => console.log("DB error", e),
 );
 
-app.use(helmet());
 app.use(express.json());
 app.use(cors());
 
