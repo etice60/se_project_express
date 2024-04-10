@@ -17,6 +17,7 @@ const handleAuthorization = (req, res, next) => {
   let payload;
 
   try {
+    console.log(JWT_SECRET);
     payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
     return authError(next);

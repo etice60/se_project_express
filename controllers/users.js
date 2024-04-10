@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../utils/config");
@@ -82,6 +84,7 @@ const createUser = (req, res, next) => {
         //   .send({ message: "An error has occurred on the server." });
       }
     });
+  console.log(JWT_SECRET);
 };
 
 const getCurrentUser = (req, res, next) => {
@@ -111,11 +114,12 @@ const loginUser = (req, res, next) => {
     return next(new InvalidError("Invalid credentials"));
   }
 
-  User.findUserByCredentials(email, password)
+  return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
         expiresIn: "7d",
       });
+      console.log(JWT_SECRET);
       res.send({ token });
     })
     .catch((err) => {
